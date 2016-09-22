@@ -147,7 +147,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="26dp">
+            android:layout_height="wrap_content">
             <TextView
                 android:text="CX       "
                 android:layout_width="wrap_content"
@@ -159,6 +159,91 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/CXValue"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="              CH  "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/CHLabel"
+                android:layout_weight=".75"/>
+            <TextView
+                android:text="CH Val:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/CHValue"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="              CL  "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/CLLabel"
+                android:layout_weight=".75"/>
+            <TextView
+                android:text="CL Val:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/CLValue"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="DX       "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DXLabel"
+                android:layout_weight=".75"/>
+            <TextView
+                android:text="DX Val:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DXValue"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="              DH  "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DHLabel"
+                android:layout_weight=".75"/>
+            <TextView
+                android:text="DH Val:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DHValue"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="              DL  "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DLLabel"
+                android:layout_weight=".75"/>
+            <TextView
+                android:text="DL Val:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DLValue"
                 android:layout_weight="1"/>
         </LinearLayout>
     </LinearLayout>
