@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.timothyhuesmann.emu8086.MainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/instructionET"
+            android:hint="Enter 8086 Instruction" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/outputTV"
+            android:text="Output" />
+
+        <Button
+            android:text="Emulate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emulateButton"
+            android:onClick="emulateButtonPressed" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="AX                      "
+                android:layout_width="153dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/AXLabel"
+                android:layout_weight=".75"/>
+            <TextView
+                android:text="AX Val:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/AXValue"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="              AH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/AHLabel"
+                android:layout_weight=".75"/>
+
+            <TextView
+                android:text="AH Val:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/AHValue"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="              AL  "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ALLabel"
+                android:layout_weight=".75"/>
+            <TextView
+                android:text="AL Val:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ALValue"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="BX       "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/BXLabel"
+                android:layout_weight=".75"/>
+            <TextView
+                android:text="BX Val:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/BXValue"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="              BH  "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/BHLabel"
+                android:layout_weight=".75"/>
+            <TextView
+                android:text="BH Val:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/BHValue"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="26dp">
+            <TextView
+                android:text="              BL  "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/BLLabel"
+                android:layout_weight=".75"/>
+            <TextView
+                android:text="BL Val:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/BLValue"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
