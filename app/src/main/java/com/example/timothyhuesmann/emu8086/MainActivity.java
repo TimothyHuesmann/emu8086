@@ -8,19 +8,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
-import static java.lang.System.in;
-
 public class MainActivity extends AppCompatActivity {
-
-    private static final int sizeOfIntInHalfBytes = 8;
-    private static final int numberOfBitsInAHalfByte = 4;
-    private static final int halfByte = 0x0F;
-    private static final char[] hexDigits = {
-            '0', '1', '2', '3', '4', '5', '6', '7',
-            '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
-    };
 
     private TextView chosenRegister;
     private Resources resources;
@@ -77,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         this.registerMap.put("DX", DXValue);
         this.registerMap.put("DH", DHValue);
         this.registerMap.put("DL", DLValue);
+        showRegisterValues();
     }
 
     //**
@@ -85,40 +77,88 @@ public class MainActivity extends AppCompatActivity {
     //OUTPUT: void
     //**
     public void emulateButtonPressed(View v){
-        this.outputTV.setText(this.instructionET.getText());
-        String[] instructions = this.instructionET.getText().toString().split(" ");
-        String method = instructions[0];
-        if(method == "mov"){
-            movCall(instructions);
-        }
+        String entry = this.instructionET.getText().toString();
+        LinkedList<String> parts = this.getParts(entry);
+        CPU.processInstruction(parts);
+        this.showRegisterValues();
     }
 
-    //**
-    //METHOD: movCall -> When "mov" is called this calls the move command which moves either the literal or the data to the new location
-    //INPUT: String[] instructions -> String array of the split instruction string
-    //OUTPUT: void
-    //**
-    private void movCall(String[] instructions){
-        String dest = instructions[1];                      //dest -> Destination address
-        String input = instructions[2];                     //input -> input value
-        for(String register : registers){
-            if(dest.toUpperCase() == register){
-                chosenRegister = (TextView)this.registerMap.get(dest.toUpperCase());
-                String hexVal = decToHex(Integer.getInteger(input));
-                chosenRegister.setText(dest.toUpperCase() + " Val: " + hexVal);
-            }
-        }
+    private void showRegisterValues(){
+        this.AXValue.setText(((Register)CPU.registers.get("ax")).getValue());
+        this.BXValue.setText(((Register)CPU.registers.get("bx")).getValue());
+        this.CXValue.setText(((Register)CPU.registers.get("cx")).getValue());
+        this.DXValue.setText(((Register)CPU.registers.get("dx")).getValue());
     }
 
-    private static String decToHex(int dec) {
-        StringBuilder hexBuilder = new StringBuilder(sizeOfIntInHalfBytes);
-        hexBuilder.setLength(sizeOfIntInHalfBytes);
-        for (int i = sizeOfIntInHalfBytes - 1; i >= 0; --i)
+    private LinkedList<String> getParts(String entry)
+    {
+        //mov      ax  ,   bx
+        //get command
+        LinkedList<String> answer = new LinkedList<String>();
+        entry = entry.trim();
+        String command = "";
+        int pos = 0;
+        while(entry.charAt(pos) != ' ')
         {
-            int j = dec & halfByte;
-            hexBuilder.setCharAt(i, hexDigits[j]);
-            dec >>= numberOfBitsInAHalfByte;
+            command += entry.charAt(pos);
+            pos++;
         }
-        return hexBuilder.toString();
+        answer.addLast(command);
+
+        //was this a command with no params
+        if(pos == entry.length())
+        {
+            return answer;
+        }
+
+        //skip whitespace
+        while(entry.charAt(pos) == ' ')
+        {
+            pos++;
+        }
+
+        //read dest
+        String dest = "";
+        while(pos != entry.length() && entry.charAt(pos) != ',' && entry.charAt(pos) != ' ')
+        {
+            dest += entry.charAt(pos);
+            pos++;
+        }
+        answer.addLast(dest);
+
+        //was this a command with a single param
+        if(pos == entry.length())
+        {
+            return answer;
+        }
+
+        while(pos != entry.length())
+        {
+            //skip whitespace
+            while(entry.charAt(pos) == ' ')
+            {
+                pos++;
+            }
+
+            //burn past comma
+            pos++;
+
+            //skip whitespace
+            while(entry.charAt(pos) == ' ')
+            {
+                pos++;
+            }
+
+            //read param
+            String param = "";
+            while(pos != entry.length() && entry.charAt(pos) != ',' && entry.charAt(pos) != ' ')
+            {
+                param += entry.charAt(pos);
+                pos++;
+            }
+            answer.addLast(param);
+        }
+        return answer;
     }
+
 }
